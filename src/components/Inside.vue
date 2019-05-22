@@ -1,7 +1,12 @@
 <template>
   <div id="table">
     <div class="column" v-for="column in allNumbers">
-      <div class="indiv-num" v-for="number in column" v-bind:key="number.id">{{number.id}}</div>
+      <div
+        class="indiv-num"
+        v-for="number in column"
+        v-bind:class="number.color"
+        v-bind:key="number.id"
+      >{{number.id}}</div>
     </div>
   </div>
 </template>
@@ -18,6 +23,8 @@ export default {
 #table {
   display: flex;
   flex-direction: row;
+  color: white;
+  font-weight: 700;
 }
 
 .column {
@@ -31,5 +38,15 @@ export default {
   align-items: center;
   width: 50px;
   height: 50px;
+  border: solid;
+  border-width: 0.5px;
+}
+
+.black {
+  background-color: black;
+}
+
+.red {
+  background-color: red;
 }
 </style>
