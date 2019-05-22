@@ -5,6 +5,7 @@
     <Twelves v-on:bet-click="addBetOutside"/>
     <Double v-on:bet-click="addBetOutside"/>
     <TwoToOne v-on:bet-click="addBetOutside"/>
+    <div @click="spin">SPIN</div>
   </div>
 </template>
 
@@ -25,6 +26,24 @@ export default {
     TwoToOne
   },
   methods: {
+    spin() {
+      const spin = Math.floor(Math.random() * Math.floor(38))
+      if (spin === 37) {
+        this.result = '00'
+      } else {
+        this.result = spin
+      }
+      this.payout()
+    },
+    payout() {
+      console.log('SPIN SPIN SPIN, landed on ', this.result)
+      const columnNum = Math.ceil(betNum / 3) - 1
+      const rowNum = (betNum - 1) % 3
+      console.log('SPIN SPIN SPIN, landed on ', this.result)
+      console.log('Run Inside payout calc')
+      console.log('Run Outside payout calc')
+    },
+    outsidePayout() {},
     addBetInside(betNum) {
       const columnNum = Math.ceil(betNum / 3) - 1
       const rowNum = (betNum - 1) % 3
@@ -58,7 +77,8 @@ export default {
   },
   data() {
     return {
-      bet: 20,
+      result: '',
+      bet: 10,
       red: 0,
       black: 0,
       even: 0,
