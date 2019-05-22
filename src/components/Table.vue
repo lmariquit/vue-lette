@@ -1,18 +1,35 @@
 <template>
   <div>
-    <Inside v-bind:allNumbers="allNumbers"/>
+    <Numbers v-bind:allNumbers="allNumbers"/>
+    <Twelves/>
   </div>
 </template>
 
 <script>
-import Inside from './Inside.vue'
+import Numbers from './inside/Numbers.vue'
+import Twelves from './outside/Twelves.vue'
 export default {
   name: 'Table',
   components: {
-    Inside
+    Numbers,
+    Twelves
   },
   data() {
     return {
+      red: 0,
+      black: 0,
+      even: 0,
+      odd: 0,
+      oneToEighteen: 0,
+      nineteenToThirtysix: 0,
+      firstTwelve: 0,
+      secondTwelve: 0,
+      thirdTwelve: 0,
+      firstTwoToOne: 0,
+      secondTwoToOne: 0,
+      thirdTwoToOne: 0,
+      zero: 0,
+      doubleZero: 0,
       allNumbers: [
         [
           {

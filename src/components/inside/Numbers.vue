@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Inside',
+  name: 'Numbers',
   components: {},
   props: ['allNumbers']
 }
