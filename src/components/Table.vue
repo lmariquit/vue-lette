@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Zeros/>
-    <Numbers v-bind:allNumbers="allNumbers"/>
-    <Twelves/>
-    <Double/>
-    <TwoToOne/>
+    <Zeros v-on:bet-click="addBetOutside"/>
+    <Numbers v-bind:allNumbers="allNumbers" v-on:bet-click="addBetInside"/>
+    <Twelves v-on:bet-click="addBetOutside"/>
+    <Double v-on:bet-click="addBetOutside"/>
+    <TwoToOne v-on:bet-click="addBetOutside"/>
   </div>
 </template>
 
@@ -24,8 +24,41 @@ export default {
     Double,
     TwoToOne
   },
+  methods: {
+    addBetInside(betNum) {
+      const columnNum = Math.ceil(betNum / 3) - 1
+      const rowNum = (betNum - 1) % 3
+      // eslint-disable-next-line
+      console.log(columnNum, rowNum, this.allNumbers[columnNum][rowNum])
+
+      // eslint-disable-next-line
+      console.log(
+        'old ',
+        betNum,
+        this.allNumbers[columnNum][rowNum].id,
+        this.allNumbers[columnNum][rowNum].bet
+      )
+      this.allNumbers[columnNum][rowNum].bet =
+        this.allNumbers[columnNum][rowNum].bet + this.bet
+      // eslint-disable-next-line
+      console.log(
+        'new ',
+        betNum,
+        this.allNumbers[columnNum][rowNum].id,
+        this.allNumbers[columnNum][rowNum].bet
+      )
+    },
+    addBetOutside(betTarget) {
+      // eslint-disable-next-line
+      console.log('old ', betTarget, this[betTarget])
+      this[betTarget] = this[betTarget] + this.bet
+      // eslint-disable-next-line
+      console.log('new ', betTarget, this[betTarget])
+    }
+  },
   data() {
     return {
+      bet: 20,
       red: 0,
       black: 0,
       even: 0,

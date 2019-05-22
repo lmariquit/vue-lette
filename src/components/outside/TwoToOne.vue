@@ -1,8 +1,8 @@
 <template>
   <div class="twoToOne-container">
-    <div class="twoToOne-indiv">2 to 1</div>
-    <div class="twoToOne-indiv">2 to 1</div>
-    <div class="twoToOne-indiv">2 to 1</div>
+    <div class="twoToOne-indiv" @click="$emit('bet-click', 'firstTwoToOne')">2 to 1</div>
+    <div class="twoToOne-indiv" @click="$emit('bet-click', 'secondTwoToOne')">2 to 1</div>
+    <div class="twoToOne-indiv" @click="$emit('bet-click', 'thirdTwoToOne')">2 to 1</div>
   </div>
 </template>
 

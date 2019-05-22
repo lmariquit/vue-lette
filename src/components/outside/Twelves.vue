@@ -1,8 +1,8 @@
 <template>
   <div class="twelves-container">
-    <div class="twelves-indiv">1st 12</div>
-    <div class="twelves-indiv">2nd 12</div>
-    <div class="twelves-indiv">3rd 12</div>
+    <div class="twelves-indiv" @click="$emit('bet-click', 'firstTwelve')">1st 12</div>
+    <div class="twelves-indiv" @click="$emit('bet-click', 'secondTwelve')">2nd 12</div>
+    <div class="twelves-indiv" @click="$emit('bet-click', 'thirdTwelve')">3rd 12</div>
   </div>
 </template>
 

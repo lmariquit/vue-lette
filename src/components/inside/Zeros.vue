@@ -1,7 +1,7 @@
 <template>
   <div class="zeros-container">
-    <div class="zeros-indiv">0</div>
-    <div class="zeros-indiv">00</div>
+    <div class="zeros-indiv" @click="$emit('bet-click', 'zero')">0</div>
+    <div class="zeros-indiv" @click="$emit('bet-click', 'doubleZero')">00</div>
   </div>
 </template>
 

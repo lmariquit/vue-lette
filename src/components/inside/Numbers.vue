@@ -6,6 +6,7 @@
         v-for="number in column"
         v-bind:class="number.color"
         v-bind:key="number.id"
+        @click="$emit('bet-click', number.id)"
       >{{number.id}}</div>
     </div>
   </div>
