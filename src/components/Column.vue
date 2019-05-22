@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-for="number in numbers" v-bind:key="number">{{number}}</div>
+  <div class="column">
+    <div v-for="number in numbers" v-bind:key="number.id">{{number.id}}</div>
   </div>
 </template>
 
@@ -12,4 +12,8 @@ export default {
 </script>
 
 <style>
+.column {
+  display: flex;
+  flex-direction: column-reverse;
+}
 </style>

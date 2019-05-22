@@ -2,17 +2,17 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <Board/>
+    <Inside/>
   </div>
 </template>
 
 <script>
-import Board from './components/Board.vue'
+import Inside from './components/Inside.vue'
 
 export default {
   name: 'app',
   components: {
-    Board
+    Inside
   }
 }
 </script>
