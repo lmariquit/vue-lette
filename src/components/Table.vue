@@ -2,17 +2,21 @@
   <div>
     <Numbers v-bind:allNumbers="allNumbers"/>
     <Twelves/>
+    <Double/>
   </div>
 </template>
 
 <script>
 import Numbers from './inside/Numbers.vue'
 import Twelves from './outside/Twelves.vue'
+import Double from './outside/Double.vue'
+
 export default {
   name: 'Table',
   components: {
     Numbers,
-    Twelves
+    Twelves,
+    Double
   },
   data() {
     return {
