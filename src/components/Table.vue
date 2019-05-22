@@ -3,6 +3,7 @@
     <Numbers v-bind:allNumbers="allNumbers"/>
     <Twelves/>
     <Double/>
+    <TwoToOne/>
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Numbers from './inside/Numbers.vue'
 import Twelves from './outside/Twelves.vue'
 import Double from './outside/Double.vue'
+import TwoToOne from './outside/TwoToOne.vue'
 
 export default {
   name: 'Table',
   components: {
     Numbers,
     Twelves,
-    Double
+    Double,
+    TwoToOne
   },
   data() {
     return {
