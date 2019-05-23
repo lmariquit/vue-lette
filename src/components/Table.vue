@@ -38,10 +38,27 @@ export default {
     payout() {
       // eslint-disable-next-line
       console.log('SPIN SPIN SPIN, landed on ', this.result)
-      if (!this.result || this.result === '00') {
-        // 0 00 payout here
+      if (!this.result) {
         // eslint-disable-next-line
-        console.log('hit 0 or 00')
+        console.log('hit 0')
+
+        // eslint-disable-next-line
+        console.log('Originial zero bet: ', this.zero)
+        const winnings = this.zero * 36
+        this.clearAllInside()
+        this.zero = winnings
+        // eslint-disable-next-line
+        console.log('zero bet should be multiplied: ', this.zero)
+        return
+      } else if (this.result === '00') {
+        console.log('hit 00')
+        // eslint-disable-next-line
+        console.log('Originial doubleZero bet: ', this.doubleZero)
+        const winnings = this.zero * 36
+        this.clearAllInside()
+        this.doubleZero = winnings
+        // eslint-disable-next-line
+        console.log('doubleZero bet should be multiplied: ', this.doubleZero)
         return
       }
       const columnNum = Math.ceil(this.result / 3) - 1
@@ -59,6 +76,12 @@ export default {
       console.log('Originial Obj bet: ', obj.bet)
       const winnings = obj.bet * 36
       // clear board
+      this.clearAllInside()
+      obj.bet = winnings
+      // eslint-disable-next-line
+      console.log('Obj bet should still be same: ', obj.bet)
+    },
+    clearAllInside() {
       console.log('this.allnums -->', this.allNumbers)
       for (let column of this.allNumbers) {
         console.log('column -->', column)
@@ -67,9 +90,22 @@ export default {
           number.bet = 0
         }
       }
-      obj.bet = winnings
-      // eslint-disable-next-line
-      console.log('Obj bet should still be same: ', obj.bet)
+    },
+    clearAllOutside() {
+      this.red = 0
+      this.black = 0
+      this.even = 0
+      this.odd = 0
+      this.oneToEighteen = 0
+      this.nineteenToThirtysix = 0
+      this.firstTwelve = 0
+      this.secondTwelve = 0
+      this.thirdTwelve = 0
+      this.firstTwoToOne = 0
+      this.secondTwoToOne = 0
+      this.thirdTwoToOne = 0
+      this.zero = 0
+      this.doubleZero = 0
     },
     outsidePayout(obj) {
       //create clearing functions for all squares. Put them on an array. If obj meets criteria, remove from array. now run all functions in array
