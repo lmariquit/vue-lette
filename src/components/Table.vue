@@ -65,68 +65,86 @@ export default {
     checkRedBlack(obj) {
       if (obj.color === 'red') {
         this.red *= 2
-        // eslint-disable-next-line
-        console.log('red state: ', this.red)
+        this.black = 0
       } else {
         this.black *= 2
-        // eslint-disable-next-line
-        console.log('black state: ', this.black)
+        this.red = 0
       }
+      // eslint-disable-next-line
+      console.log('red state: ', this.red)
+      // eslint-disable-next-line
+      console.log('black state: ', this.black)
     },
     checkOneToEighteen(obj) {
       if (obj.id < 19) {
         this.oneToEighteen *= 2
-        // eslint-disable-next-line
-        console.log('oneToEighteen state: ', this.oneToEighteen)
+        this.nineteenToThirtysix = 0
       } else {
         this.nineteenToThirtysix *= 2
-        // eslint-disable-next-line
-        console.log('nineteenToThirtysix state: ', this.nineteenToThirtysix)
+        this.oneToEighteen = 0
       }
+      // eslint-disable-next-line
+      console.log('oneToEighteen state: ', this.oneToEighteen)
+      // eslint-disable-next-line
+      console.log('nineteenToThirtysix state: ', this.nineteenToThirtysix)
     },
     checkEvenOdd(obj) {
       if (obj.id % 2) {
         this.odd *= 2
-        // eslint-disable-next-line
-        console.log('odd state: ', this.odd)
+        this.even = 0
       } else {
         this.even *= 2
-        // eslint-disable-next-line
-        console.log('even state: ', this.even)
+        this.odd = 0
       }
+      // eslint-disable-next-line
+      console.log('odd state: ', this.odd)
+      // eslint-disable-next-line
+      console.log('even state: ', this.even)
     },
     checkTwelves(obj) {
       if (obj.id < 13) {
         this.firstTwelve *= 3
-        // eslint-disable-next-line
-        console.log('firstTwelve state: ', this.firstTwelve)
-      } else if (obj.id < 27) {
+        this.secondTwelve = 0
+        this.thirdTwelve = 0
+      } else if (obj.id < 25) {
+        this.firstTwelve = 0
         this.secondTwelve *= 3
-        // eslint-disable-next-line
-        console.log('secondTwelve state: ', this.secondTwelve)
+        this.thirdTwelve = 0
       } else {
+        this.firstTwelve = 0
+        this.secondTwelve = 0
         this.thirdTwelve *= 3
-        // eslint-disable-next-line
-        console.log('thirdTwelve state: ', this.thirdTwelve)
       }
+      // eslint-disable-next-line
+      console.log('firstTwelve state: ', this.firstTwelve)
+      // eslint-disable-next-line
+      console.log('secondTwelve state: ', this.secondTwelve)
+      // eslint-disable-next-line
+      console.log('thirdTwelve state: ', this.thirdTwelve)
     },
     checkTwoToOnes(obj) {
       // NOTE TO SELF --> REMEMBER TO DO FLEX DIRECTION COLUMN REVERSE THESE 2 TO 1 BOXES
       if ([1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34].includes(obj.id)) {
         this.firstTwoToOne *= 3
-        // eslint-disable-next-line
-        console.log('firstTwoToOne state: ', this.firstTwoToOne)
+        this.secondTwoToOne = 0
+        this.thirdTwoToOne = 0
       } else if (
         [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35].includes(obj.id)
       ) {
+        this.firstTwoToOne = 0
         this.secondTwoToOne *= 3
-        // eslint-disable-next-line
-        console.log('secondTwoToOne state: ', this.secondTwoToOne)
+        this.thirdTwoToOne = 0
       } else {
+        this.firstTwoToOne = 0
+        this.secondTwoToOne = 0
         this.thirdTwoToOne *= 3
-        // eslint-disable-next-line
-        console.log('thirdTwoToOne state: ', this.thirdTwoToOne)
       }
+      // eslint-disable-next-line
+      console.log('firstTwoToOne state: ', this.firstTwoToOne)
+      // eslint-disable-next-line
+      console.log('secondTwoToOne state: ', this.secondTwoToOne)
+      // eslint-disable-next-line
+      console.log('thirdTwoToOne state: ', this.thirdTwoToOne)
     },
     addBetInside(betNum) {
       const columnNum = Math.ceil(betNum / 3) - 1
