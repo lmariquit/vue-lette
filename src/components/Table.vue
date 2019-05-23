@@ -36,14 +36,98 @@ export default {
       this.payout()
     },
     payout() {
+      // eslint-disable-next-line
       console.log('SPIN SPIN SPIN, landed on ', this.result)
-      const columnNum = Math.ceil(betNum / 3) - 1
-      const rowNum = (betNum - 1) % 3
-      console.log('SPIN SPIN SPIN, landed on ', this.result)
-      console.log('Run Inside payout calc')
-      console.log('Run Outside payout calc')
+      if (!this.result || this.result === '00') {
+        // 0 00 payout here
+        // eslint-disable-next-line
+        console.log('hit 0 or 00')
+        return
+      }
+      const columnNum = Math.ceil(this.result / 3) - 1
+      const rowNum = (this.result - 1) % 3
+      const winningNumObj = this.allNumbers[columnNum][rowNum]
+      // eslint-disable-next-line
+      console.log('OBJ: ', winningNumObj)
+      this.outsidePayout(winningNumObj)
+      // Run Inside payout calc: outsidePayout(winningNumObj)
+      // Run Outside payout calc: insidePayout(winningNumObj)
     },
-    outsidePayout() {},
+    outsidePayout(obj) {
+      //create clearing functions for all squares. Put them on an array. If obj meets criteria, remove from array. now run all functions in array
+      this.checkRedBlack(obj)
+      this.checkEvenOdd(obj)
+      this.checkOneToEighteen(obj)
+      this.checkTwelves(obj)
+      this.checkTwoToOnes(obj)
+      return obj
+    },
+    checkRedBlack(obj) {
+      if (obj.color === 'red') {
+        this.red *= 2
+        // eslint-disable-next-line
+        console.log('red state: ', this.red)
+      } else {
+        this.black *= 2
+        // eslint-disable-next-line
+        console.log('black state: ', this.black)
+      }
+    },
+    checkOneToEighteen(obj) {
+      if (obj.id < 19) {
+        this.oneToEighteen *= 2
+        // eslint-disable-next-line
+        console.log('oneToEighteen state: ', this.oneToEighteen)
+      } else {
+        this.nineteenToThirtysix *= 2
+        // eslint-disable-next-line
+        console.log('nineteenToThirtysix state: ', this.nineteenToThirtysix)
+      }
+    },
+    checkEvenOdd(obj) {
+      if (obj.id % 2) {
+        this.odd *= 2
+        // eslint-disable-next-line
+        console.log('odd state: ', this.odd)
+      } else {
+        this.even *= 2
+        // eslint-disable-next-line
+        console.log('even state: ', this.even)
+      }
+    },
+    checkTwelves(obj) {
+      if (obj.id < 13) {
+        this.firstTwelve *= 3
+        // eslint-disable-next-line
+        console.log('firstTwelve state: ', this.firstTwelve)
+      } else if (obj.id < 27) {
+        this.secondTwelve *= 3
+        // eslint-disable-next-line
+        console.log('secondTwelve state: ', this.secondTwelve)
+      } else {
+        this.thirdTwelve *= 3
+        // eslint-disable-next-line
+        console.log('thirdTwelve state: ', this.thirdTwelve)
+      }
+    },
+    checkTwoToOnes(obj) {
+      // NOTE TO SELF --> REMEMBER TO DO FLEX DIRECTION COLUMN REVERSE THESE 2 TO 1 BOXES
+      if ([1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34].includes(obj.id)) {
+        this.firstTwoToOne *= 3
+        // eslint-disable-next-line
+        console.log('firstTwoToOne state: ', this.firstTwoToOne)
+      } else if (
+        [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35].includes(obj.id)
+      ) {
+        this.secondTwoToOne *= 3
+        // eslint-disable-next-line
+        console.log('secondTwoToOne state: ', this.secondTwoToOne)
+      } else {
+        this.thirdTwoToOne *= 3
+        // eslint-disable-next-line
+        console.log('thirdTwoToOne state: ', this.thirdTwoToOne)
+      }
+    },
     addBetInside(betNum) {
       const columnNum = Math.ceil(betNum / 3) - 1
       const rowNum = (betNum - 1) % 3
