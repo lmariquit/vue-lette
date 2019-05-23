@@ -49,9 +49,27 @@ export default {
       const winningNumObj = this.allNumbers[columnNum][rowNum]
       // eslint-disable-next-line
       console.log('OBJ: ', winningNumObj)
+      this.insidePayout(winningNumObj)
       this.outsidePayout(winningNumObj)
       // Run Inside payout calc: outsidePayout(winningNumObj)
       // Run Outside payout calc: insidePayout(winningNumObj)
+    },
+    insidePayout(obj) {
+      // eslint-disable-next-line
+      console.log('Originial Obj bet: ', obj.bet)
+      const winnings = obj.bet * 36
+      // clear board
+      console.log('this.allnums -->', this.allNumbers)
+      for (let column of this.allNumbers) {
+        console.log('column -->', column)
+        for (let number of column) {
+          console.log('number -->', number)
+          number.bet = 0
+        }
+      }
+      obj.bet = winnings
+      // eslint-disable-next-line
+      console.log('Obj bet should still be same: ', obj.bet)
     },
     outsidePayout(obj) {
       //create clearing functions for all squares. Put them on an array. If obj meets criteria, remove from array. now run all functions in array
