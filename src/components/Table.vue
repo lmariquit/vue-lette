@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>RESULT: {{this.result}}</div>
+    <div>bet: {{this.bet}}</div>
     <Zeros v-on:bet-click="addBetOutside"/>
     <Numbers v-bind:allNumbers="allNumbers" v-on:bet-click="addBetInside"/>
     <Twelves v-on:bet-click="addBetOutside"/>
@@ -22,7 +23,7 @@
       <div>2 to 1 (third): {{this.thirdTwoToOne}}</div>
     </div>
     <div v-for="column in this.allNumbers">
-      <div v-for="number in column">{{number.id}} : {{number.bet}}</div>
+      <div v-for="number in column" v-bind:key="number.id">{{number.id}} : {{number.bet}}</div>
     </div>
   </div>
 </template>
@@ -57,54 +58,30 @@ export default {
       // eslint-disable-next-line
       console.log('SPIN SPIN SPIN, landed on ', this.result)
       if (!this.result) {
-        // eslint-disable-next-line
-        console.log('hit 0')
-
-        // eslint-disable-next-line
-        console.log('Originial zero bet: ', this.zero)
         const winnings = this.zero * 36
         this.clearAllInside()
         this.zero = winnings
-        // eslint-disable-next-line
-        console.log('zero bet should be multiplied: ', this.zero)
         return
       } else if (this.result === '00') {
-        console.log('hit 00')
-        // eslint-disable-next-line
-        console.log('Originial doubleZero bet: ', this.doubleZero)
         const winnings = this.zero * 36
         this.clearAllInside()
         this.doubleZero = winnings
-        // eslint-disable-next-line
-        console.log('doubleZero bet should be multiplied: ', this.doubleZero)
         return
       }
       const columnNum = Math.ceil(this.result / 3) - 1
       const rowNum = (this.result - 1) % 3
       const winningNumObj = this.allNumbers[columnNum][rowNum]
-      // eslint-disable-next-line
-      console.log('OBJ: ', winningNumObj)
       this.insidePayout(winningNumObj)
       this.outsidePayout(winningNumObj)
-      // Run Inside payout calc: outsidePayout(winningNumObj)
-      // Run Outside payout calc: insidePayout(winningNumObj)
     },
     insidePayout(obj) {
-      // eslint-disable-next-line
-      console.log('Originial Obj bet: ', obj.bet)
       const winnings = obj.bet * 36
-      // clear board
       this.clearAllInside()
       obj.bet = winnings
-      // eslint-disable-next-line
-      console.log('Obj bet should still be same: ', obj.bet)
     },
     clearAllInside() {
-      console.log('this.allnums -->', this.allNumbers)
       for (let column of this.allNumbers) {
-        console.log('column -->', column)
         for (let number of column) {
-          console.log('number -->', number)
           number.bet = 0
         }
       }
@@ -141,10 +118,6 @@ export default {
         this.black *= 2
         this.red = 0
       }
-      // eslint-disable-next-line
-      console.log('red state: ', this.red)
-      // eslint-disable-next-line
-      console.log('black state: ', this.black)
     },
     checkOneToEighteen(obj) {
       if (obj.id < 19) {
@@ -154,10 +127,6 @@ export default {
         this.nineteenToThirtysix *= 2
         this.oneToEighteen = 0
       }
-      // eslint-disable-next-line
-      console.log('oneToEighteen state: ', this.oneToEighteen)
-      // eslint-disable-next-line
-      console.log('nineteenToThirtysix state: ', this.nineteenToThirtysix)
     },
     checkEvenOdd(obj) {
       if (obj.id % 2) {
@@ -167,10 +136,6 @@ export default {
         this.even *= 2
         this.odd = 0
       }
-      // eslint-disable-next-line
-      console.log('odd state: ', this.odd)
-      // eslint-disable-next-line
-      console.log('even state: ', this.even)
     },
     checkTwelves(obj) {
       if (obj.id < 13) {
@@ -186,12 +151,6 @@ export default {
         this.secondTwelve = 0
         this.thirdTwelve *= 3
       }
-      // eslint-disable-next-line
-      console.log('firstTwelve state: ', this.firstTwelve)
-      // eslint-disable-next-line
-      console.log('secondTwelve state: ', this.secondTwelve)
-      // eslint-disable-next-line
-      console.log('thirdTwelve state: ', this.thirdTwelve)
     },
     checkTwoToOnes(obj) {
       // NOTE TO SELF --> REMEMBER TO DO FLEX DIRECTION COLUMN REVERSE THESE 2 TO 1 BOXES
@@ -210,42 +169,15 @@ export default {
         this.secondTwoToOne = 0
         this.thirdTwoToOne *= 3
       }
-      // eslint-disable-next-line
-      console.log('firstTwoToOne state: ', this.firstTwoToOne)
-      // eslint-disable-next-line
-      console.log('secondTwoToOne state: ', this.secondTwoToOne)
-      // eslint-disable-next-line
-      console.log('thirdTwoToOne state: ', this.thirdTwoToOne)
     },
     addBetInside(betNum) {
       const columnNum = Math.ceil(betNum / 3) - 1
       const rowNum = (betNum - 1) % 3
-      // eslint-disable-next-line
-      console.log(columnNum, rowNum, this.allNumbers[columnNum][rowNum])
-
-      // eslint-disable-next-line
-      console.log(
-        'old ',
-        betNum,
-        this.allNumbers[columnNum][rowNum].id,
-        this.allNumbers[columnNum][rowNum].bet
-      )
       this.allNumbers[columnNum][rowNum].bet =
         this.allNumbers[columnNum][rowNum].bet + this.bet
-      // eslint-disable-next-line
-      console.log(
-        'new ',
-        betNum,
-        this.allNumbers[columnNum][rowNum].id,
-        this.allNumbers[columnNum][rowNum].bet
-      )
     },
     addBetOutside(betTarget) {
-      // eslint-disable-next-line
-      console.log('old ', betTarget, this[betTarget])
       this[betTarget] = this[betTarget] + this.bet
-      // eslint-disable-next-line
-      console.log('new ', betTarget, this[betTarget])
     }
   },
   data() {
