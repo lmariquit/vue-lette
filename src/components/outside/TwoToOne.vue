@@ -12,12 +12,22 @@ export default {}
 
 <style>
 .twoToOne-container {
+  /* display: grid; */
+  /* grid-template-columns: repeat(12, 1fr); */
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  color: white;
+  font-weight: 700;
 }
 .twoToOne-indiv {
-  width: 300px;
+  display: flex;
+  width: 33.3%;
+  height: 50%;
   border: solid;
   border-width: 0.5px;
+  background-color: green;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -2,11 +2,13 @@
   <div>
     <div>RESULT: {{this.result}}</div>
     <div>bet: {{this.bet}}</div>
-    <Zeros v-on:bet-click="addBetOutside"/>
-    <Numbers v-bind:allNumbers="allNumbers" v-on:bet-click="addBetInside"/>
-    <Twelves v-on:bet-click="addBetOutside"/>
-    <Double v-on:bet-click="addBetOutside"/>
-    <TwoToOne v-on:bet-click="addBetOutside"/>
+    <div class="grid-container">
+      <Zeros v-on:bet-click="addBetOutside"/>
+      <Numbers v-bind:allNumbers="allNumbers" v-on:bet-click="addBetInside"/>
+      <TwoToOne v-on:bet-click="addBetOutside"/>
+      <Twelves v-on:bet-click="addBetOutside"/>
+      <Double v-on:bet-click="addBetOutside"/>
+    </div>
     <div @click="spin">SPIN</div>
     <div>
       <div>1st 12: {{this.firstTwelve}}</div>
@@ -410,4 +412,9 @@ export default {
 </script>
 
 <style>
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+}
 </style>

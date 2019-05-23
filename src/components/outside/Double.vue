@@ -15,12 +15,17 @@ export default {}
 
 <style>
 .double-container {
+  grid-row: 3/3;
+  grid-column: 2/2;
   display: flex;
   flex-direction: row;
+  color: white;
+  font-weight: 700;
 }
 .double-indiv {
-  width: 300px;
+  width: 33.3%;
   border: solid;
   border-width: 0.5px;
+  background-color: green;
 }
 </style>

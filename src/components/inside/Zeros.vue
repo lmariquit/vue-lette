@@ -1,7 +1,7 @@
 <template>
   <div class="zeros-container">
-    <div class="zeros-indiv" @click="$emit('bet-click', 'zero')">0</div>
-    <div class="zeros-indiv" @click="$emit('bet-click', 'doubleZero')">00</div>
+    <div id="zero" class="zeros-indiv" @click="$emit('bet-click', 'zero')">0</div>
+    <div id="double-zero" class="zeros-indiv" @click="$emit('bet-click', 'doubleZero')">00</div>
   </div>
 </template>
 
@@ -11,12 +11,23 @@ export default {}
 
 <style>
 .zeros-container {
+  /* display: grid; */
+  /* grid-template-columns: repeat(12, 1fr); */
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  color: white;
+  font-weight: 700;
 }
 .zeros-indiv {
-  width: 300px;
+  display: flex;
+  width: 33.3%;
+  height: 50%;
   border: solid;
   border-width: 0.5px;
+  /* grid-column: 12/12; */
+  background-color: green;
+  justify-content: center;
+  align-items: center;
 }
 </style>

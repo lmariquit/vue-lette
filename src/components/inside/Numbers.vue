@@ -22,8 +22,9 @@ export default {
 
 <style>
 #table {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
   color: white;
   font-weight: 700;
 }
@@ -31,14 +32,15 @@ export default {
 .column {
   display: flex;
   flex-direction: column-reverse;
+  grid-row: 2/2;
 }
 
 .indiv-num {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  /* width: 50px;
+  height: 50px; */
   border: solid;
   border-width: 0.5px;
 }

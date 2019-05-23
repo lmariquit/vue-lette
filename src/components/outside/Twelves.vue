@@ -14,12 +14,16 @@ export default {
 
 <style>
 .twelves-container {
+  grid-column: 2/2;
   display: flex;
   flex-direction: row;
+  color: white;
+  font-weight: 700;
 }
 .twelves-indiv {
-  width: 300px;
+  width: 33.3%;
   border: solid;
   border-width: 0.5px;
+  background-color: green;
 }
 </style>
