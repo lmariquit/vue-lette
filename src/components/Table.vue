@@ -1,11 +1,29 @@
 <template>
   <div>
+    <div>RESULT: {{this.result}}</div>
     <Zeros v-on:bet-click="addBetOutside"/>
     <Numbers v-bind:allNumbers="allNumbers" v-on:bet-click="addBetInside"/>
     <Twelves v-on:bet-click="addBetOutside"/>
     <Double v-on:bet-click="addBetOutside"/>
     <TwoToOne v-on:bet-click="addBetOutside"/>
     <div @click="spin">SPIN</div>
+    <div>
+      <div>1st 12: {{this.firstTwelve}}</div>
+      <div>2st 12: {{this.secondTwelve}}</div>
+      <div>3st 12: {{this.thirdTwelve}}</div>
+      <div>1 to 18: {{this.oneToEighteen}}</div>
+      <div>19 to 36: {{this.nineteenToThirtysix}}</div>
+      <div>EVEN: {{this.even}}</div>
+      <div>ODD: {{this.odd}}</div>
+      <div>RED: {{this.red}}</div>
+      <div>BLACK: {{this.black}}</div>
+      <div>2 to 1 (first): {{this.firstTwoToOne}}</div>
+      <div>2 to 1 (second): {{this.secondTwoToOne}}</div>
+      <div>2 to 1 (third): {{this.thirdTwoToOne}}</div>
+    </div>
+    <div v-for="column in this.allNumbers">
+      <div v-for="number in column">{{number.id}} : {{number.bet}}</div>
+    </div>
   </div>
 </template>
 
@@ -108,7 +126,6 @@ export default {
       this.doubleZero = 0
     },
     outsidePayout(obj) {
-      //create clearing functions for all squares. Put them on an array. If obj meets criteria, remove from array. now run all functions in array
       this.checkRedBlack(obj)
       this.checkEvenOdd(obj)
       this.checkOneToEighteen(obj)
